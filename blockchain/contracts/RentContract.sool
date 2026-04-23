@@ -1,0 +1,11 @@
+pragma solidity ^0.8.20;
+
+contract RentContract {
+    event RentPaid(address tenant, uint amount, string ref);
+
+    function payRent(string memory ref) public payable {
+        require(msg.value > 0, "No payment");
+
+        emit RentPaid(msg.sender, msg.value, ref);
+    }
+}
