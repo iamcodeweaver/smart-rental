@@ -10,28 +10,48 @@ export default function Tenants() {
     <DashboardLayout>
       <h1 className="text-xl font-semibold mb-6">Tenants</h1>
 
-      <div className="bg-white border rounded-lg">
-        {tenants.map((t) => (
-          <div
-            key={t.id}
-            className="flex justify-between p-4 border-b"
-          >
-            <div>
-              <p className="font-medium">{t.name}</p>
-              <p className="text-sm text-gray-500">{t.unit}</p>
-            </div>
+      <div className="bg-white border border-gray-200 rounded-lg overflow-hidden">
 
-            <span
-              className={`text-xs px-2 py-1 rounded ${
-                t.status === "active"
-                  ? "bg-green-100 text-green-700"
-                  : "bg-gray-200 text-gray-600"
-              }`}
-            >
-              {t.status}
-            </span>
-          </div>
-        ))}
+        {/* Table */}
+        <table className="w-full text-sm">
+
+          {/* Header */}
+          <thead className="bg-gray-50 text-gray-500 text-left">
+            <tr>
+              <th className="p-4">Name</th>
+              <th>Unit</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+
+          {/* Body */}
+          <tbody>
+            {tenants.map((t) => (
+              <tr key={t.id} className="border-t">
+
+                <td className="p-4 font-medium">
+                  {t.name}
+                </td>
+
+                <td>{t.unit}</td>
+
+                <td>
+                  <span
+                    className={`text-xs px-2 py-1 rounded-full ${
+                      t.status === "active"
+                        ? "bg-green-100 text-green-700"
+                        : "bg-gray-200 text-gray-600"
+                    }`}
+                  >
+                    {t.status}
+                  </span>
+                </td>
+
+              </tr>
+            ))}
+          </tbody>
+
+        </table>
       </div>
     </DashboardLayout>
   );
