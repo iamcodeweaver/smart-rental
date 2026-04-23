@@ -1,23 +1,73 @@
-import Input from "../components/Input";
-import Button from "../components/Button";
+import { useNavigate } from "react-router-dom";
+import { useState } from "react";
 
 export default function Login() {
+  const navigate = useNavigate();
+
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  const handleLogin = (e) => {
+    e.preventDefault(); // 🔥 prevents page reload
+
+    // 🧠 MOCK AUTH (replace later with backend)
+    const user = {
+      email,
+      role: email.includes("tenant") ? "tenant" : "landlord",
+    };
+
+    // 💾 Save role (for future use)
+    localStorage.setItem("role", user.role);
+
+    // 🚀 Redirect based on role
+    if (user.role === "landlord") {
+      navigate("/dashboard");
+    } else {
+      navigate("/tenant-dashboard");
+    }
+  };
+
   return (
-    <div className="h-screen flex items-center justify-center">
+    <div className="min-h-screen flex items-center justify-center bg-gray-50">
 
-      <div className="bg-white border p-8 rounded-lg w-96">
+      <form
+        onSubmit={handleLogin}
+        className="bg-white p-8 rounded-lg border w-full max-w-md"
+      >
 
-        <h1 className="text-xl font-semibold mb-6">Login</h1>
+        <h2 className="text-xl font-semibold mb-6">
+          Login
+        </h2>
 
-        <Input placeholder="Email" />
-        <Input placeholder="Password" type="password" className="mt-3" />
+        {/* Email */}
+        <input
+          type="email"
+          placeholder="Email"
+          className="w-full border p-2 rounded mb-3"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          required
+        />
 
-        <Button className="mt-5 w-full">
-          Sign In
-        </Button>
+        {/* Password */}
+        <input
+          type="password"
+          placeholder="Password"
+          className="w-full border p-2 rounded mb-4"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+          required
+        />
 
-      </div>
+        {/* Button */}
+        <button
+          type="submit"
+          className="w-full bg-black text-white py-2 rounded hover:opacity-90"
+        >
+          Login
+        </button>
 
+      </form>
     </div>
   );
 }
