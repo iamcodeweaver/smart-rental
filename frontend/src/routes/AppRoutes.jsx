@@ -14,13 +14,18 @@ import Tenants from "../pages/Tenants";
 import Leases from "../pages/Leases";
 import Payments from "../pages/Payments";
 
+import MyLease from "../pages/MyLease";
+import PayRent from "../pages/PayRent";
+
+import CreateLease from "../pages/CreateLease";
+
 import ProtectedRoute from "../components/ProtectedRoute";
 
 export default function AppRoutes() {
   return (
     <Routes>
 
-      {/* PUBLIC (WITH LAYOUT) */}
+      {/* PUBLIC ROUTES */}
       <Route
         path="/"
         element={
@@ -48,7 +53,10 @@ export default function AppRoutes() {
         }
       />
 
-      {/* LANDLORD ONLY */}
+      {/* ========================= */}
+      {/* LANDLORD ROUTES */}
+      {/* ========================= */}
+
       <Route
         path="/dashboard"
         element={
@@ -104,8 +112,11 @@ export default function AppRoutes() {
         }
       />
 
-      {/* TENANT ONLY */}
-      {/* <Route
+      {/* ========================= */}
+      {/* TENANT ROUTES */}
+      {/* ========================= */}
+
+      <Route
         path="/tenant-dashboard"
         element={
           <ProtectedRoute role="tenant">
@@ -114,16 +125,38 @@ export default function AppRoutes() {
             </AppLayout>
           </ProtectedRoute>
         }
-      /> */}
+      />
+
+      <Route
+        path="/my-lease"
+        element={
+          <ProtectedRoute role="tenant">
+            <AppLayout>
+              <MyLease />
+            </AppLayout>
+          </ProtectedRoute>
+        }
+      />
+
+      <Route
+        path="/pay-rent"
+        element={
+          <ProtectedRoute role="tenant">
+            <AppLayout>
+              <PayRent />
+            </AppLayout>
+          </ProtectedRoute>
+        }
+      />
 
 <Route
-  path="/tenant-dashboard"
+  path="/create-lease"
   element={
-
+    <ProtectedRoute role="landlord">
       <AppLayout>
-        <TenantDashboard />
+        <CreateLease />
       </AppLayout>
-
+    </ProtectedRoute>
   }
 />
 
