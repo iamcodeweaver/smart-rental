@@ -1,16 +1,35 @@
 import DashboardLayout from "../layouts/DashboardLayout";
 
 export default function TenantDashboard() {
+  const payments = [
+    {
+      month: "January 2026",
+      amount: 700000,
+      status: "paid",
+      ref: "0x9a3f...d21",
+    },
+    {
+      month: "February 2026",
+      amount: 700000,
+      status: "pending",
+      ref: "-",
+    },
+    {
+      month: "March 2026",
+      amount: 700000,
+      status: "failed",
+      ref: "-",
+    },
+  ];
+
   return (
     <DashboardLayout>
 
       {/* Header */}
       <div className="mb-6">
-        <h1 className="text-2xl font-semibold">
-          Tenant Dashboard
-        </h1>
+        <h1 className="text-2xl font-semibold">Tenant Dashboard</h1>
         <p className="text-sm text-gray-500">
-          Manage your rent, lease, and payment history
+          Manage rent payments and lease status
         </p>
       </div>
 
@@ -19,7 +38,9 @@ export default function TenantDashboard() {
 
         <div className="bg-white border rounded-lg p-5">
           <p className="text-sm text-gray-500">Monthly Rent</p>
-          <h2 className="text-xl font-semibold mt-2">$700</h2>
+          <h2 className="text-xl font-semibold mt-2">
+            ₦700,000
+          </h2>
         </div>
 
         <div className="bg-white border rounded-lg p-5">
@@ -32,26 +53,24 @@ export default function TenantDashboard() {
         <div className="bg-white border rounded-lg p-5">
           <p className="text-sm text-gray-500">Next Due Date</p>
           <h2 className="text-xl font-semibold mt-2">
-            5th May
+            5th May 2026
           </h2>
         </div>
 
       </div>
 
-      {/* Payments Section */}
+      {/* Payments Table */}
       <div className="bg-white border rounded-lg">
 
         <div className="p-4 border-b">
-          <h3 className="font-medium">
-            Payment History
-          </h3>
+          <h3 className="font-medium">Payment History</h3>
         </div>
 
         <table className="w-full text-sm">
 
           <thead className="text-left text-gray-500 bg-gray-50">
             <tr>
-              <th className="p-4">Date</th>
+              <th className="p-4">Month</th>
               <th>Amount</th>
               <th>Status</th>
               <th>Reference</th>
@@ -59,37 +78,34 @@ export default function TenantDashboard() {
           </thead>
 
           <tbody>
+            {payments.map((p, i) => (
+              <tr key={i} className="border-t">
 
-            <tr className="border-t">
-              <td className="p-4">Jan 2026</td>
-              <td>$700</td>
-              <td>
-                <span className="px-2 py-1 text-xs rounded bg-green-100 text-green-700">
-                  paid
-                </span>
-              </td>
-              <td className="text-gray-500">
-                0x9a3f...d21
-              </td>
-            </tr>
+                <td className="p-4">{p.month}</td>
 
-            <tr className="border-t">
-              <td className="p-4">Feb 2026</td>
-              <td>$700</td>
-              <td>
-                <span className="px-2 py-1 text-xs rounded bg-yellow-100 text-yellow-700">
-                  pending
-                </span>
-              </td>
-              <td className="text-gray-500">
-                -
-              </td>
-            </tr>
+                <td>₦{p.amount.toLocaleString()}</td>
 
+                <td>
+                  <span
+                    className={`px-2 py-1 text-xs rounded-full ${
+                      p.status === "paid"
+                        ? "bg-green-100 text-green-700"
+                        : p.status === "pending"
+                        ? "bg-yellow-100 text-yellow-700"
+                        : "bg-red-100 text-red-700"
+                    }`}
+                  >
+                    {p.status}
+                  </span>
+                </td>
+
+                <td className="text-gray-500">{p.ref}</td>
+
+              </tr>
+            ))}
           </tbody>
 
         </table>
-
       </div>
 
     </DashboardLayout>

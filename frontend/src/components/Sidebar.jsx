@@ -9,13 +9,13 @@ export default function Sidebar() {
   return (
     <div className="w-64 bg-white border-r border-gray-200 p-6">
 
-      <h1 className="text-xl font-semibold mb-8">
+      {/* <h1 className="text-xl font-semibold mb-8">
         Smart Rental
-      </h1>
+      </h1> */}
 
       <nav className="space-y-2 text-sm">
 
-        <NavLink to="/" className={linkClass}>
+        <NavLink to="/dashboard" className={linkClass}>
           Dashboard
         </NavLink>
 

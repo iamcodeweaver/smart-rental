@@ -1,5 +1,7 @@
 import { Routes, Route } from "react-router-dom";
 
+import AppLayout from "../layouts/AppLayout";
+
 import Home from "../pages/Home";
 import Login from "../pages/Login";
 import Signup from "../pages/Signup";
@@ -18,17 +20,42 @@ export default function AppRoutes() {
   return (
     <Routes>
 
-      {/* PUBLIC */}
-      <Route path="/" element={<Home />} />
-      <Route path="/login" element={<Login />} />
-      <Route path="/signup" element={<Signup />} />
+      {/* PUBLIC (WITH LAYOUT) */}
+      <Route
+        path="/"
+        element={
+          <AppLayout>
+            <Home />
+          </AppLayout>
+        }
+      />
+
+      <Route
+        path="/login"
+        element={
+          <AppLayout>
+            <Login />
+          </AppLayout>
+        }
+      />
+
+      <Route
+        path="/signup"
+        element={
+          <AppLayout>
+            <Signup />
+          </AppLayout>
+        }
+      />
 
       {/* LANDLORD ONLY */}
       <Route
         path="/dashboard"
         element={
           <ProtectedRoute role="landlord">
-            <Dashboard />
+            <AppLayout>
+              <Dashboard />
+            </AppLayout>
           </ProtectedRoute>
         }
       />
@@ -37,7 +64,9 @@ export default function AppRoutes() {
         path="/properties"
         element={
           <ProtectedRoute role="landlord">
-            <Properties />
+            <AppLayout>
+              <Properties />
+            </AppLayout>
           </ProtectedRoute>
         }
       />
@@ -46,7 +75,9 @@ export default function AppRoutes() {
         path="/tenants"
         element={
           <ProtectedRoute role="landlord">
-            <Tenants />
+            <AppLayout>
+              <Tenants />
+            </AppLayout>
           </ProtectedRoute>
         }
       />
@@ -55,7 +86,9 @@ export default function AppRoutes() {
         path="/leases"
         element={
           <ProtectedRoute role="landlord">
-            <Leases />
+            <AppLayout>
+              <Leases />
+            </AppLayout>
           </ProtectedRoute>
         }
       />
@@ -64,20 +97,35 @@ export default function AppRoutes() {
         path="/payments"
         element={
           <ProtectedRoute role="landlord">
-            <Payments />
+            <AppLayout>
+              <Payments />
+            </AppLayout>
           </ProtectedRoute>
         }
       />
 
       {/* TENANT ONLY */}
-      <Route
+      {/* <Route
         path="/tenant-dashboard"
         element={
           <ProtectedRoute role="tenant">
-            <TenantDashboard />
+            <AppLayout>
+              <TenantDashboard />
+            </AppLayout>
           </ProtectedRoute>
         }
-      />
+      /> */}
+
+<Route
+  path="/tenant-dashboard"
+  element={
+
+      <AppLayout>
+        <TenantDashboard />
+      </AppLayout>
+
+  }
+/>
 
     </Routes>
   );

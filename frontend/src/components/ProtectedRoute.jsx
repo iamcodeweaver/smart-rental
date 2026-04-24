@@ -4,6 +4,8 @@ import { useAuth } from "../context/AuthContext";
 export default function ProtectedRoute({ children, role }) {
   const { user } = useAuth();
 
+//   console.log("USER FROM AUTH:", user);
+// console.log("EXPECTED ROLE:", role);
   // ❌ Not logged in
   if (!user) {
     return <Navigate to="/login" />;

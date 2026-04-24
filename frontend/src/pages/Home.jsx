@@ -1,61 +1,158 @@
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+// import Navbar from "../components/Navbar";
+import heroImage from "../assets/images/hero.jpeg";
+import blockchainImg from "../assets/images/blockchain.png";
+import autoLeaseImg from "../assets/images/auto_leases.jpeg";
+import keyImg from "../assets/images/key.jpeg";
+import notifyImg from "../assets/images/notify.jpeg";
+import agreeImg from "../assets/images/agreement.jpeg";
+import paymentImg from "../assets/images/payment.jpeg";
 
 export default function Home() {
+  const navigate = useNavigate();
+
   return (
-    <div className="min-h-screen bg-gray-50 flex flex-col items-center justify-center text-center px-6">
+    <div className="min-h-screen bg-white flex flex-col">
 
-      {/* HERO */}
-      <h1 className="text-4xl font-semibold mb-4">
-        Smart Rental Platform
-      </h1>
+      {/* NAVBAR */}
+        {/* <Navbar /> */}
 
-      <p className="text-gray-600 max-w-xl mb-8">
-        A modern system for managing rental agreements, tenants, and payments —
-        powered by secure smart contracts for transparency and trust.
-      </p>
+      {/* HERO SECTION */}
+      <section className="flex flex-col md:flex-row items-center justify-between px-10 py-20 gap-10">
 
-      {/* CTA */}
-      <div className="flex gap-4">
-        <Link
-          to="/login"
-          className="px-6 py-2 bg-black text-white rounded-lg hover:opacity-90"
-        >
-          Login
-        </Link>
+        {/* TEXT */}
+        <div className="max-w-xl">
+          <h2 className="text-4xl font-bold leading-tight">
+            Smart Contract-BRAS
+          </h2>
 
-        <Link
-          to="/signup"
-          className="px-6 py-2 border border-gray-300 rounded-lg hover:bg-gray-100"
-        >
-          Sign Up
-        </Link>
-      </div>
-
-      {/* FEATURES */}
-      <div className="mt-16 grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl">
-
-        <div className="bg-white border rounded-lg p-6">
-          <h3 className="font-medium mb-2">Property Management</h3>
-          <p className="text-sm text-gray-500">
-            Track multiple properties, tenants, and leases in one dashboard.
+          <p className="text-gray-600 mt-4 text-lg">
+            A modern rental platform where landlords and tenants interact securely
+            using smart contracts, transparent payments, and automated lease tracking.
           </p>
+
+          <div className="mt-6 flex gap-4">
+            <button
+              onClick={() => navigate("/signup")}
+              className="bg-black text-white px-5 py-3 rounded-lg"
+            >
+              Start Renting
+            </button>
+
+            <button
+              onClick={() => navigate("/login")}
+              className="border px-5 py-3 rounded-lg"
+            >
+              Sign In
+            </button>
+          </div>
         </div>
 
-        <div className="bg-white border rounded-lg p-6">
-          <h3 className="font-medium mb-2">Secure Payments</h3>
-          <p className="text-sm text-gray-500">
-            Enable transparent and verifiable rent payments.
-          </p>
+        {/* IMAGE PLACEHOLDER */}
+        <div className="w-full md:w-1/2">
+        <img
+            src={heroImage}
+            alt="Smart Rental Dashboard"
+            className="h-72 w-full object-cover rounded-xl border shadow-sm"
+        />
         </div>
+      </section>
 
-        <div className="bg-white border rounded-lg p-6">
-          <h3 className="font-medium mb-2">Smart Contracts</h3>
-          <p className="text-sm text-gray-500">
-            Automate agreements with blockchain-backed security.
-          </p>
+      {/* FEATURES SECTION */}
+      <section className="px-10 py-16 bg-gray-50">
+
+        <h3 className="text-2xl font-semibold text-center mb-10">
+          Why Smart Rental?
+        </h3>
+
+        <div className="grid md:grid-cols-3 gap-6">
+
+          <div className="bg-white p-6 rounded-xl border">
+            <img
+            src={blockchainImg}
+            alt="Blockchain Payments"
+            className="h-32 w-full object-cover mb-4 rounded-lg border"
+            />
+            <h4 className="font-semibold">Blockchain Payments</h4>
+            <p className="text-sm text-gray-600 mt-2">
+              Secure and transparent rent payments tracked on-chain.
+            </p>
+          </div>
+
+          <div className="bg-white p-6 rounded-xl border">
+            <img
+            src={autoLeaseImg}
+            alt="Automated Leases"
+            className="h-32 w-full object-cover mb-4 rounded-lg border"
+            />
+            <h4 className="font-semibold">Automated Leases</h4>
+            <p className="text-sm text-gray-600 mt-2">
+              Smart contracts enforce rental agreements automatically.
+            </p>
+          </div>
+
+          <div className="bg-white p-6 rounded-xl border">
+            <img
+            src={keyImg}
+            alt="Dual Dashboards"
+            className="h-32 w-full object-cover mb-4 rounded-lg border"
+            />
+            <h4 className="font-semibold">Dual Dashboards</h4>
+            <p className="text-sm text-gray-600 mt-2">
+              Separate landlord and tenant dashboards for clarity.
+            </p>
+          </div>
+
         </div>
+      </section>
 
-      </div>
+      {/* HOW IT WORKS */}
+      <section className="px-10 py-20">
+
+        <h3 className="text-2xl font-semibold text-center mb-10">
+          How It Works
+        </h3>
+
+        <div className="grid md:grid-cols-3 gap-8 text-center">
+
+          <div>
+            <img
+            src={notifyImg}
+            alt="Step 1 - Signup"
+            className="h-40 w-full object-cover rounded-lg mb-4 border"
+            />
+            <h4 className="font-semibold">Sign Up</h4>
+            <p className="text-sm text-gray-600">
+              Register as landlord or tenant.
+            </p>
+          </div>
+
+          <div>
+            <img
+            src={agreeImg}
+            alt="Step 2 - Agreement"
+            className="h-40 w-full object-cover rounded-lg mb-4 border"
+            />
+            <h4 className="font-semibold">Create Agreement</h4>
+            <p className="text-sm text-gray-600">
+              Smart contract automatically defines lease terms.
+            </p>
+          </div>
+
+          <div>
+            <img
+            src={paymentImg}
+            alt="Step 3 - Payment"
+            className="h-40 w-full object-cover rounded-lg mb-4 border"
+            />
+            <h4 className="font-semibold">Pay & Track</h4>
+            <p className="text-sm text-gray-600">
+              Payments recorded securely on blockchain.
+            </p>
+          </div>
+
+        </div>
+      </section>
 
     </div>
   );
